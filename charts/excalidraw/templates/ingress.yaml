@@ -1,0 +1,23 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+  {{- toYaml .Values.excalidraw.ingress.annotations | nindent 4 }}
+  name: excalidraw
+spec:
+  ingressClassName: {{ .Values.excalidraw.ingress.className }}
+  rules:
+  - host: {{ .Values.excalidraw.ingress.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: excalidraw
+            port:
+              number: 80
+  tls:
+  {{- toYaml .Values.excalidraw.ingress.tls | nindent 4 }}
+---
