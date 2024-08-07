@@ -1,0 +1,11 @@
+excalidraw:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    className: nginx
+
+    host: draw.cloud.marksiesplace.co.uk
+    tls:
+    - hosts:
+      - draw.cloud.marksiesplace.co.uk
+      secretName: excalidraw-cert
